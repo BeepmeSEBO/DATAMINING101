@@ -1,6 +1,5 @@
 print("GRADES: A, B, C, D, F")
 input <- readline(prompt = "Enter Grade: ")
-
 Meaning <- switch(tolower(input),
                   a = "Excellent", 
                   b = "Good",
@@ -9,5 +8,4 @@ Meaning <- switch(tolower(input),
                   f = "Fail",
                   "Invalid Input"
                   )
-
 print(Meaning)
