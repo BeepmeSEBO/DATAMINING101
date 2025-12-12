@@ -6,7 +6,7 @@ library(wordcloud)
 library(RColorBrewer)
 
 # ---------- Part 1 ----------
-setwd("C:/Users/sabad/OneDrive/Desktop/DM101/WordCloud_EXAM")
+setwd("C:/Users/sabad/OneDrive/Desktop/DM101/WordCloud_EXAM")  # adjust path as needed
 feedback <- readLines("Feedback.txt.txt", encoding = "UTF-8", warn = FALSE)
 
 feedback <- feedback[nchar(trimws(feedback)) > 0]
@@ -29,6 +29,12 @@ df <- data.frame(word = names(word_freq), freq = word_freq)
 top10 <- head(df, 10)
 print("Top 10 Most Frequent Words:")
 print(top10)
+
+png("top10_freq.png", width = 800, height = 600)
+par(mar = c(10,5,4,2) + 0.1)
+barplot(height = top10$freq, names.arg = top10$word, las = 2,
+        main = "Top 10 Most Frequent Words", ylab = "Frequency", cex.names = 0.9)
+dev.off()
 
 interpretation <- c(
   "Interpretation:",
@@ -63,6 +69,10 @@ if (nrow(df_rare) >= 5) {
 } else {
   df_rare <- tail(df, 5)
 }
+
+top5 <- head(df, 10)
+print("Top 5 Rarest Words:")
+print(top5)
 
 png("wordcloud_rare.png", width = 800, height = 600)
 set.seed(709)
